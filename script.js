@@ -2,28 +2,20 @@
 
 
 
-    // 1. Atrapamos los elementos de la pantalla
-const boton = document.getElementById("botonCalcular");
-const inputMeta = document.getElementById("meta");
-const inputGastos = document.getElementById("gastos");
-const textoResultado = document.getElementById("resultado");
+   // 1. Convertimos el texto a números reales (Nota la F mayúscula)
+  const meta = parseFloat(inputMeta.value) || 0;
+  const gastos = parseFloat(inputGastos.value) || 0;
 
-boton.addEventListener("click", function() {
-    // Convertimos el texto a números reales
-    const meta = parseFloat(inputMeta.value) || 0;
-    const gastos = parseFloat(inputGastos.value) || 0;
+  // Validación simple
+  if (meta <= 0) {
+      textoResultado.innerText = "⚠️ Por favor, ingresa una meta mayor a 0.";
+      textoResultado.style.color = "red";
+      return;
+  }
 
-    // Validación simple: Si no ponen meta, avisamos
-    if (meta <= 0) {
-        textoResultado.innerText = "⚠️ Por favor, ingresa una meta mayor a 0.";
-        textoResultado.style.color = "red";
-        return; 
-    }
+  // 2. Cálculo: Sumamos primero y luego dividimos
+  const objetivoTotal = (meta + gastos) / 30;
 
-    // Cálculo: (Lo que quiero ganar + Lo que gasto) / 30 días
-    const objetivoTotal = (meta + gastos) / 30;
-
-    // Resultado final
-    textoResultado.style.color = "#2c3e50";
-    textoResultado.innerText = "Para ganar $" + meta + " libres, debes ingresar $" + objetivoTotal.toFixed(2) + " por día.";
-});
+  // 3. Resultado final (Usando el método de unión con + para evitar fallos de comillas)
+  textoResultado.style.color = "#2c3e50";
+  textoResultado.innerText = "Para ganar $" + meta + " libres, debes ingresar $" + objetivoTotal.toFixed(2) + " por día.";
