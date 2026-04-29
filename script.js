@@ -25,5 +25,5 @@ boton.addEventListener("click", function() {
 
     // Resultado final
     textoResultado.style.color = "#2c3e50";
-    textoResultado.innerText = Para ganar $${meta} libres, debes ingresar $${objetivoTotal.toFixed(2)} por día.;
+    textoResultado.innerText = "Para ganar $" + meta + " libres, debes ingresar $" + objetivoTotal.toFixed(2) + " por día.";
 });
